@@ -1,26 +1,56 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { FilterDataDto } from 'src/common/api/dto/pagination.dto';
+import { IdsDto } from 'src/common/api/dto/ids.dto';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserEntity } from './entities/user.entity';
+import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class UserService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
+  ) {}
+
+  async create(createUserDto: CreateUserDto) {
+    const user = new UserEntity(createUserDto);
+
+    await this.userRepository.save(user);
   }
 
-  findAll() {
-    return `This action returns all user`;
+  async findAll(filterDataDto: FilterDataDto) {
+    return await this.userRepository.find({
+      skip: (filterDataDto.page - 1) * filterDataDto.limit,
+      take: filterDataDto.limit,
+      where: filterDataDto.search ? { full_name: filterDataDto.search } : null,
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    return await this.userRepository.findOne(+id);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const user = await this.userRepository.findOne(+id);
+    if (!user) {
+      throw new NotFoundException(`User with id ${id} not found`);
+    }
+
+    Object.assign(user, updateUserDto);
+    return await this.userRepository.update(user);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(ids: IdsDto) {
+    for (const id of ids) {
+      const user = await this.userRepository.findOne(+id);
+      if (!user) {
+        throw new NotFoundException(`User with id ${id} not found`);
+      }
+
+      await this.userRepository.delete(+id);
+    }
   }
 }

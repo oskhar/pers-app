@@ -4,20 +4,38 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity('users')
 export class UserEntity extends AbstractEntity<UserEntity> {
   @Column()
-  firstName: string;
+  full_name: string;
 
   @Column()
-  lastName: string;
+  phone: string | null;
+
+  @Column()
+  address: string | null;
+
+  @Column()
+  facebook_url: string | null;
+
+  @Column()
+  instagram_url: string | null;
+
+  @Column()
+  twitter_url: string | null;
 
   @Column()
   email: string;
+
+  @Column({ default: true })
+  is_public_email: boolean;
 
   @Column()
   password: string;
 
   @Column()
-  verificationCode: string;
+  verification_code: string | null;
 
-  @Column()
-  isVerified: boolean;
+  @Column({ default: 'member' })
+  role: string;
+
+  @Column({ default: false })
+  is_active: boolean;
 }
