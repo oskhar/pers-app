@@ -1,10 +1,16 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
+import { ImageUploadProvider } from './config/multer/image/providers/image-upload.provider';
+import { UserModule } from './modules/user/user.module';
+import { ArticleModule } from './modules/article/article.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    UserModule,
+    ArticleModule,
+  ],
+  controllers: [],
+  providers: [ImageUploadProvider],
 })
 export class AppModule {}
