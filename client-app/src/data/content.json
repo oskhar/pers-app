@@ -1,0 +1,84 @@
+{
+  "header": {
+    "title": "NP Consultant Indonesia",
+    "nav": [
+      { "name": "Overview", "link": "#overview" },
+      { "name": "About Us", "link": "#about" },
+      { "name": "Our Service", "link": "#services" },
+      { "name": "Our Partners", "link": "#partners" },
+      { "name": "Blog", "link": "#blog" },
+      { "name": "More", "link": "#more" }
+    ]
+  },
+  "hero": {
+    "tagline": "We are committed to providing excellent legal service & products.",
+    "title": "Welcome to NP Consultant Indonesia",
+    "text": "Welcome to NP Consultant Indonesia, where we are not just your lawyers or legal consultants but also your strategic business partners. Our practice areas include mining, energy and natural resources, corporate and commercial, M&A, investment, immigration, employment, due diligence and compliance, civil and commercial litigation, family law, and others. We bring you the pinnacle of Indonesian legal expertise tailored to your unique needs.",
+    "image": ""
+  },
+  "whyChoose": {
+    "storyTitle": "Our Story",
+    "story": "Founded by Gesiu Nicholas Manurung and Yuliana Pertiwi Siagian, two highly credentialed advocates with respective 14 years of field expertise, NP Consultant Indonesia was built on a strong academic and professional foundation. What started as a vision has grown into a full-scale operation, serving a diverse clientele—from individuals grappling with legal complexities to multinational corporations seeking to navigate the Indonesian market.",
+    "advantages": [
+      {
+        "title": "Extensive Expertise",
+        "text": "Our practice spans a broad spectrum of legal fields, from Corporate & Commercial law to Energy & Natural Resources, all the way to Litigation and Dispute Settlement. This comprehensive service offering makes us a one-stop legal solution for all your needs."
+      },
+      {
+        "title": "International Exposure",
+        "text": "We bring global perspectives to local challenges, thanks to our team’s international experience."
+      },
+      {
+        "title": "Cultural Insight",
+        "text": "Our deep roots in Indonesia enable us to bridge the gap between legal practice and cultural nuance."
+      },
+      {
+        "title": "Client-Focused",
+        "text": "We offer tailored billing options and efficiently managed cases to meet our clients’ diverse needs."
+      }
+    ]
+  },
+  "servicesDescription": "In an increasingly complex regulatory environment, NP Consultant Indonesia stands as a beacon of legal excellence, providing bespoke legal solutions finely tuned to the nuances of Indonesian law. Our team is skilled in a wide range of practice areas, each handled with the careful attention to detail that sets our firm apart.",
+  "services": [
+    { "title": "Environment & Forestry", "link": "#" },
+    { "title": "Real Estate & Construction", "link": "#" },
+    { "title": "Trade & Commerce", "link": "#" },
+    { "title": "Litigation & Dispute Resolution", "link": "#" },
+    { "title": "Family Law", "link": "#" },
+    { "title": "Corporate, Commercial & Investment", "link": "#" },
+    { "title": "Merger & Acquisition", "link": "#" },
+    { "title": "Mining & Natural Resources", "link": "#" },
+    { "title": "Compliance & Investigation", "link": "#" },
+    { "title": "Immigration & Employment", "link": "#" }
+  ],
+  "partners": [
+    { "name": "Gesiu Nicholas Manurung", "position": "Partner", "link": "#" },
+    { "name": "Yuliana Pertiwi Siagian", "position": "Partner", "link": "#" }
+  ],
+  "clients": [],
+  "contact": {
+    "jakarta": {
+      "address": [
+        "18 Office Park, 25th Floor",
+        "Jl. TB Simatupang Kav. 18",
+        "South Jakarta 12520",
+        "Indonesia"
+      ],
+      "phone": "(+6221) 27806577",
+      "whatsapp": "(+62) 818 0689 0350"
+    },
+    "surabaya": {
+      "address": [
+        "Pakuwon Tower (Tunjungan Plaza 6), 22nd Floor, OT 18",
+        "Jl. Embong Malang No.21-31",
+        "Kel. Kedungdoro, Kec. Tegalsari Surabaya, Jawa Timur 60261"
+      ],
+      "phone": "(+6231)-21177788",
+      "whatsapp": "(+62) 818 0689 0350"
+    },
+    "email": "consultant@np-consultant.com"
+  },
+  "footer": {
+    "text": "©2024 BY NP CONSULTANT INDONESIA."
+  }
+}

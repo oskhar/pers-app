@@ -1,11 +1,10 @@
 export const routes = [
-  { path: '/', redirect: '/dashboard' },
   {
-    path: '/',
+    path: '/dashboard',
     component: () => import('@/layouts/default.vue'),
     children: [
       {
-        path: 'dashboard',
+        path: 'main',
         component: () => import('@/pages/dashboard.vue'),
       },
       {
@@ -38,6 +37,10 @@ export const routes = [
     path: '/',
     component: () => import('@/layouts/blank.vue'),
     children: [
+      {
+        path: '/',
+        component: () => import('@/pages/home-page.vue'),
+      },
       {
         path: 'login',
         component: () => import('@/pages/login.vue'),

@@ -1,25 +1,25 @@
 import { AbstractEntity } from 'src/common/api/entities/abstract.entity';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 
 @Entity('users')
 export class UserEntity extends AbstractEntity<UserEntity> {
   @Column()
   full_name: string;
 
-  @Column()
-  phone: string | null;
+  @Column({ nullable: true })
+  phone?: string;
 
-  @Column()
-  address: string | null;
+  @Column({ nullable: true })
+  address?: string;
 
-  @Column()
-  facebook_url: string | null;
+  @Column({ nullable: true })
+  facebook_url?: string;
 
-  @Column()
-  instagram_url: string | null;
+  @Column({ nullable: true })
+  instagram_url?: string;
 
-  @Column()
-  twitter_url: string | null;
+  @Column({ nullable: true })
+  twitter_url?: string;
 
   @Column()
   email: string;
@@ -30,8 +30,8 @@ export class UserEntity extends AbstractEntity<UserEntity> {
   @Column()
   password: string;
 
-  @Column()
-  verification_code: string | null;
+  @Column({ nullable: true })
+  verification_code?: string;
 
   @Column({ default: 'member' })
   role: string;

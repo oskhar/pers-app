@@ -7,6 +7,7 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { NotFoundException } from '@nestjs/common';
+import { ILike } from 'typeorm';
 
 @Injectable()
 export class UserService {
@@ -22,35 +23,46 @@ export class UserService {
   }
 
   async findAll(filterDataDto: FilterDataDto) {
+    const { page, limit, search } = filterDataDto;
+
+    const whereClause = search ? { full_name: ILike(`%${search}%`) } : {};
+
     return await this.userRepository.find({
-      skip: (filterDataDto.page - 1) * filterDataDto.limit,
-      take: filterDataDto.limit,
-      where: filterDataDto.search ? { full_name: filterDataDto.search } : null,
+      skip: (page - 1) * limit,
+      take: limit,
+      where: whereClause,
     });
   }
 
   async findOne(id: number) {
-    return await this.userRepository.findOne(+id);
+    return await this.userRepository.findOne({ where: { id: +id } });
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    const user = await this.userRepository.findOne(+id);
+    const user = await this.userRepository.findOne({ where: { id: +id } });
     if (!user) {
       throw new NotFoundException(`User with id ${id} not found`);
     }
 
     Object.assign(user, updateUserDto);
-    return await this.userRepository.update(user);
+    return await this.userRepository.save(user);
   }
 
   async remove(ids: IdsDto) {
-    for (const id of ids) {
-      const user = await this.userRepository.findOne(+id);
-      if (!user) {
-        throw new NotFoundException(`User with id ${id} not found`);
-      }
+    const idNumbers = ids.map((id) => +id); // konversi ke number
 
-      await this.userRepository.delete(+id);
+    // Ambil semua user yang ditemukan
+    const existingUsers = await this.userRepository.findByIds(idNumbers);
+
+    const existingIds = existingUsers.map((user) => user.id);
+    const notFoundIds = idNumbers.filter((id) => !existingIds.includes(id));
+
+    if (notFoundIds.length) {
+      throw new NotFoundException(
+        `User(s) with id(s) ${notFoundIds.join(', ')} not found`,
+      );
     }
+
+    await this.userRepository.delete(idNumbers);
   }
 }
